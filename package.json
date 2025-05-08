@@ -1,0 +1,21 @@
+{
+  "name": "aufgabe_4_1",
+  "version": "1.0.0",
+  "description": "product service on GraphQL with MongoDB",
+  "main": "product-service.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "GraphQL",
+    "node.js",
+    "MongoDB",
+    "PDM"
+  ],
+  "author": "Luca",
+  "license": "ISC",
+  "dependencies": {
+    "graphql": "^15.10.1",
+    "mongodb": "^4.17.2"
+  }
+}

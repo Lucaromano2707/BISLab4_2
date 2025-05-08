@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+ database:
+  container_name: productsdb
+  image: mongo
+  restart: always
+  volumes:
+   - /Users/luca/Studium/BI/Lab4/mongodata:/data/db
+  network_mode: "host"
