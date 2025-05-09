@@ -4,8 +4,8 @@ const schemas = require('./graphql-schemas');
 const productSchema = schemas.productSchema;
 const MongoClient = require('mongodb').MongoClient;
 
+//const dburl = 'mongodb://localhost:27017';
 const dburl = 'mongodb://localhost:27017';
-// const dburl = 'mongodb://database:27017';
 
 // DB-Verbindung
 const connectToDB = async () => {
@@ -18,8 +18,10 @@ const connectToDB = async () => {
     }
 };
 
-// Root-Objekt mit Query auf products
+// Root-Objekt mit Resolver-Funktionen:
 const root = {
+
+    // Query, um alle Produkte aus der mongoDB zu holen und als Liste zurückzugeben
     products: async () => {
         const client = await connectToDB();
         const db = client.db('productdb');
@@ -27,7 +29,10 @@ const root = {
         const products = await productsColl.find({}).toArray();
         return products;
     },
+
+    // Mutation, um ein neues Produkt in die mongoDB einzufügen
     addProduct: async ({ input }) => {
+        console.log("addProduct wurde aufgerufen mit: ", input)
         const newProduct = input;
         const client = await connectToDB();
         const db = client.db('productdb');
@@ -36,7 +41,7 @@ const root = {
         await client.close();
         return newProduct;
     },
-
+    // Mutation, um über ID ein bestimmtes Produkt zu löschen
     deleteProduct: async (id) => {
         const proId = id.id;
         const client = await connectToDB();
