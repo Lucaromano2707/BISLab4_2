@@ -5,6 +5,7 @@ const productSchema = schemas.productSchema;
 const MongoClient = require('mongodb').MongoClient;
 
 const dburl = 'mongodb://localhost:27017';
+// const dburl = 'mongodb://database:27017';
 
 // DB-Verbindung
 const connectToDB = async () => {
@@ -25,6 +26,25 @@ const root = {
         const productsColl = db.collection('products');
         const products = await productsColl.find({}).toArray();
         return products;
+    },
+    addProduct: async ({ input }) => {
+        const newProduct = input;
+        const client = await connectToDB();
+        const db = client.db('productdb');
+        const productsColl = db.collection('products');
+        await productsColl.insertOne(newProduct);
+        await client.close();
+        return newProduct;
+    },
+
+    deleteProduct: async (id) => {
+        const proId = id.id;
+        const client = await connectToDB();
+        const db = client.db('productdb');
+        const productsColl = db.collection('products');
+        const deleted = await productsColl.findOneAndDelete({ id: proId });
+        await client.close();
+        return deleted.value;
     }
 };
 
@@ -34,14 +54,19 @@ const server = http.createServer(async (req, res) => {
         let body = '';
         req.on('data', chunk => body += chunk);
         req.on('end', async () => {
-            const { query } = JSON.parse(body);
-            const result = await graphql({
-                schema: productSchema,
-                source: query,
-                rootValue: root
-            });
-            res.writeHead(200, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify(result));
+            try {
+                const { query } = JSON.parse(body);
+                const result = await graphql({
+                    schema: productSchema,
+                    source: query,
+                    rootValue: root
+                });
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify(result));
+            } catch (err) {
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ error: 'Invalid request' }));
+            }
         });
     } else {
         res.writeHead(405);

@@ -13,8 +13,8 @@ const productSchema = buildSchema(`
 
     type BikeDetails {
         material: String
-        color: [String]
-        size: [Int]
+        colors: [String]
+        sizes: [Int]
         group: String
         cassette: String
         rim: String
@@ -35,8 +35,8 @@ const productSchema = buildSchema(`
 
     input BikeDetailsInput {
         material: String
-        color: [String]
-        size: [Int]
+        colors: [String]
+        sizes: [Int]
         group: String
         cassette: String
         rim: String
