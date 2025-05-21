@@ -1,0 +1,3 @@
+exit
+db.products.find().pretty()
+use productdb

@@ -21,12 +21,42 @@ const connectToDB = async () => {
 // Root-Objekt mit Resolver-Funktionen:
 const root = {
 
+    // Query um ein bestimmtes Produkt abzufragen
+    product: async ({ id }) => {
+        const client = await connectToDB();
+        const db = client.db('productdb');
+        const productsColl = db.collection('products');
+        const product = await productsColl.findOne({ id: id });
+        await client.close();
+        return product;
+    },
+
     // Query, um alle Produkte aus der mongoDB zu holen und als Liste zurückzugeben
     products: async () => {
         const client = await connectToDB();
         const db = client.db('productdb');
         const productsColl = db.collection('products');
         const products = await productsColl.find({}).toArray();
+        return products;
+    },
+
+    // Query, um Produkte eines bestimmten Herstellers zu finden
+    productsByProducer: async ({ producer }) => {
+        const client = await connectToDB();
+        const db = client.db('productdb');
+        const productsColl = db.collection('products');
+        const products = await productsColl.find({ producer: producer }).toArray();
+        await client.close();
+        return products;
+    },
+
+    // Query, um Produkte anhand eines Namens zu finden
+    productsByName: async ({ name }) => {
+        const client = await connectToDB();
+        const db = client.db('productdb');
+        const productsColl = db.collection('products');
+        const products = await productsColl.find({ name: name }).toArray();
+        await client.close();
         return products;
     },
 
@@ -41,6 +71,7 @@ const root = {
         await client.close();
         return newProduct;
     },
+
     // Mutation, um über ID ein bestimmtes Produkt zu löschen
     deleteProduct: async (id) => {
         const proId = id.id;
@@ -54,31 +85,19 @@ const root = {
 };
 
 // HTTP-Server für Port 8081
-const server = http.createServer(async (req, res) => {
-    if (req.method === 'POST') {
-        let body = '';
-        req.on('data', chunk => body += chunk);
-        req.on('end', async () => {
-            try {
-                const { query } = JSON.parse(body);
-                const result = await graphql({
-                    schema: productSchema,
-                    source: query,
-                    rootValue: root
-                });
-                res.writeHead(200, { 'Content-Type': 'application/json' });
-                res.end(JSON.stringify(result));
-            } catch (err) {
-                res.writeHead(400, { 'Content-Type': 'application/json' });
-                res.end(JSON.stringify({ error: 'Invalid request' }));
-            }
-        });
-    } else {
-        res.writeHead(405);
-        res.end();
-    }
-});
+http.createServer(function (req, res) {
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    req.on('end', function () {
 
-server.listen(8081, () => {
+        // Query vom Client in JSON parsen
+        const { query } = JSON.parse(body);
+
+        // Schema (andere Datei), Query (vom Client) und Root (mit Resolvern) einbinden
+        graphql(productSchema, query, root).then((response) => { // Promise, wenn Antwort da (ist sie beim Aufruf noch nicht) zurücksenden
+            res.end(JSON.stringify(response));
+        });
+    });
+}).listen(8081, () => {
     console.log('Server läuft auf Port 8081');
 });
