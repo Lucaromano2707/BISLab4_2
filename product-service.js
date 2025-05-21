@@ -62,7 +62,6 @@ const root = {
 
     // Mutation, um ein neues Produkt in die mongoDB einzufügen
     addProduct: async ({ input }) => {
-        console.log("addProduct wurde aufgerufen mit: ", input)
         const newProduct = input;
         const client = await connectToDB();
         const db = client.db('productdb');

@@ -1,3 +1,153 @@
+db.products.find().pretty()
+console.log("✅ Testdaten erfolgreich eingefügt.");
+]);
+  }
+    }
+      handlebar: "Cube Comfort"
+      brakes: "Tektro HD-M275",
+      tires: "Schwalbe Marathon Plus",
+      rim: "Cube ZX20",
+      cassette: "10-fach 11-36T",
+      group: "Shimano Deore",
+      sizes: [48, 52, 56],
+      colors: ["Weiß", "Grau"],
+      material: "Aluminium",
+    details: {
+    price: 899.95,
+    subtype: "Trekking",
+    prodtype: "Citybike",
+    producer: "Cube",
+    name: "Attention",
+    id: "7",
+  {
+  },
+    }
+      handlebar: "Syncros Creston"
+      brakes: "Shimano BR-R7070",
+      tires: "Continental Ultra Sport",
+      rim: "Syncros RP2.0",
+      cassette: "11-fach 11-32T",
+      group: "Shimano 105",
+      sizes: [52, 54, 56],
+      colors: ["Silber", "Rot"],
+      material: "Aluminium",
+    details: {
+    price: 1799.00,
+    subtype: "Endurance",
+    prodtype: "Rennrad",
+    producer: "Scott",
+    name: "Remedy",
+    id: "6",
+  {
+  },
+    }
+      handlebar: "Race Face Aeffect"
+      brakes: "Magura MT5",
+      tires: "Schwalbe Nobby Nic",
+      rim: "DT Swiss M1900",
+      cassette: "12-fach 10-51T",
+      group: "Shimano XT",
+      sizes: [16, 18, 20],
+      colors: ["Schwarz", "Blau"],
+      material: "Carbon",
+    details: {
+    price: 2299.99,
+    subtype: "Fully",
+    prodtype: "Mountainbike",
+    producer: "Canyon",
+    name: "AMS 350",
+    id: "5",
+  {
+db.getCollection('products').insertMany([
+db.products.find().pretty()
+)
+  { $set: { id: "2" } }
+  { id: "4", name: "Trail Blazer 500" },
+db.products.updateOne(
+)
+  { $set: { id: "3" } }
+  { id: "2", name: "Speedster 300" },
+db.products.updateOne(
+)
+  { $set: { id: "4" } }
+  { id: "3", name: "Urban Cruiser" },
+db.products.updateOne(
+db.products.find().pretty()
+)
+  { $set: { id: "4" } }
+  { id: "2", name: "Trail Blazer 500" },
+db.products.updateOne(
+exit
+  { $set: { id: "2" } }
+  { id: "1", name: "Trail Blazer 500" },
+db.products.updateOne(
+)
+  { $set: { id: "2" } }
+  { id: "1", name: "Trail Blazer 500" },
+db.products.updateOne(
+db.products.find().pretty()
+use productdb
+console.log("✅ Testdaten erfolgreich eingefügt.");
+]);
+  }
+    }
+      handlebar: "Cube Comfort"
+      brakes: "Tektro HD-M275",
+      tires: "Schwalbe Marathon Plus",
+      rim: "Cube ZX20",
+      cassette: "10-fach 11-36T",
+      group: "Shimano Deore",
+      sizes: [48, 52, 56],
+      colors: ["Weiß", "Grau"],
+      material: "Aluminium",
+    details: {
+    price: 899.95,
+    subtype: "Trekking",
+    prodtype: "Citybike",
+    producer: "Cube",
+    name: "Urban Cruiser",
+    id: "3",
+  {
+  },
+    }
+      handlebar: "Syncros Creston"
+      brakes: "Shimano BR-R7070",
+      tires: "Continental Ultra Sport",
+      rim: "Syncros RP2.0",
+      cassette: "11-fach 11-32T",
+      group: "Shimano 105",
+      sizes: [52, 54, 56],
+      colors: ["Silber", "Rot"],
+      material: "Aluminium",
+    details: {
+    price: 1799.00,
+    subtype: "Endurance",
+    prodtype: "Rennrad",
+    producer: "Scott",
+    name: "Speedster 300",
+    id: "2",
+  {
+  },
+    }
+      handlebar: "Race Face Aeffect"
+      brakes: "Magura MT5",
+      tires: "Schwalbe Nobby Nic",
+      rim: "DT Swiss M1900",
+      cassette: "12-fach 10-51T",
+      group: "Shimano XT",
+      sizes: [16, 18, 20],
+      colors: ["Schwarz", "Blau"],
+      material: "Carbon",
+    details: {
+    price: 2299.99,
+    subtype: "Fully",
+    prodtype: "Mountainbike",
+    producer: "Canyon",
+    name: "Trail Blazer 500",
+    id: "1",
+  {
+db.getCollection('products').insertMany([
+use ('productdb')
 exit
 db.products.find().pretty()
 use productdb
